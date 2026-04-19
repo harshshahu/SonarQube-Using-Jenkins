@@ -69,11 +69,11 @@ save&exit.
 🔟 Configure Kernel Parameters
 sudo nano /etc/sysctl.conf
 
-Add c:
-
+Add below:
 vm.max_map_count=524288
 fs.file-max=131072
 
+save&exit.
 
 sudo sysctl -p
 
@@ -81,10 +81,11 @@ sudo sysctl -p
 1️⃣1️⃣ Configure System Limits
 sudo nano /etc/security/limits.conf
 
-Add below:
-
+Add below (before: '# End of file'):
 sonar   -   nofile   131072
 sonar   -   nproc    8192
+
+save&exit.
 
 
 1️⃣2️⃣ Create SonarQube Service
@@ -125,31 +126,33 @@ sudo systemctl status sonarqube
 1️⃣3️⃣ Fix PostgreSQL Authentication
 sudo nano /var/lib/pgsql/data/pg_hba.conf
 
-Update:
-host    all    all    127.0.0.1/32    md5
-host    all    all    ::1/128         md5
+Update below (remove  both old tables and add the below):
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+local   all             postgres                                peer
+local   all             all                                     peer
+host    all             all             127.0.0.1/32            md5
+host    all             all             ::1/128                 md5
 
 save+exit.
-
 
 sudo systemctl restart postgresql
 
 
-1️⃣4️⃣ Verify Database Access
-psql -U sonar -d sonarqube -h localhost
-\q
+#1️⃣4️⃣ Verify Database Access
+#psql -U sonar -d sonarqube -h localhost
+#(write password: StrongPassword)
+#\q
 
 
 1️⃣5️⃣ Set Database Ownership
 sudo -i -u postgres
 psql
 
+paste below:
 ALTER DATABASE sonarqube OWNER TO sonar;
 GRANT ALL PRIVILEGES ON DATABASE sonarqube TO sonar;
 
 \q
-
-sudo systemctl restart sonarqube
 
 
 1️⃣6️⃣ Access SonarQube
