@@ -38,7 +38,9 @@ CREATE DATABASE sonarqube;
 CREATE USER sonar WITH PASSWORD 'StrongPassword';
 ALTER USER sonar WITH ENCRYPTED PASSWORD 'StrongPassword';
 GRANT ALL PRIVILEGES ON DATABASE sonarqube TO sonar;
+
 \q
+
 exit
 
 
@@ -62,6 +64,7 @@ sonar.jdbc.username=sonar
 sonar.jdbc.password=StrongPassword
 sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
 
+save&exit.
 
 🔟 Configure Kernel Parameters
 sudo nano /etc/sysctl.conf
@@ -70,6 +73,8 @@ Add c:
 
 vm.max_map_count=524288
 fs.file-max=131072
+
+
 sudo sysctl -p
 
 
