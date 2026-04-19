@@ -164,9 +164,28 @@ Username	admin
 Password	admin
 
 👉 You will be prompted to change password on first login.
+new password: Admin@123
 
 
-1️⃣8️⃣ Sonar Scanner Installation
+1. click on Manually
+2. Project display name: MyProject
+3. Project key: MyProject
+4. Main branch name: main
+5. click on 'Set Up'
+6. with Jenkins
+7. GitHub
+8. Configure Analysis
+9. Continue
+10. Continue
+11. Maven
+12. Copy
+13. Finish this tutorial
+
+
+
+
+
+1️⃣8️⃣ Sonar Scanner Installation on your EC2-Instance
 
 cd /opt
 sudo wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
