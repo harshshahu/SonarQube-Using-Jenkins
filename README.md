@@ -166,7 +166,7 @@ Password	admin
 👉 You will be prompted to change password on first login.
 new password: Admin@123
 
-
+*Demo:
 1. click on Manually
 2. Project display name: MyProject
 3. Project key: MyProject
